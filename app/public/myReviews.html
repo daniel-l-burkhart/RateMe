@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h2>My Reviews</h2>
+<h5>Category &nbsp;&nbsp;&nbsp;Title</h5>
+<select ng-model="mainController.category"
+        ng-change="mainController.title = undefined"
+        ng-options="review.category as review.category for review in reviews | unique:'category'">
+</select>
+<select ng-model="mainController.title"
+        ng-options="review.name as review.name for review in reviews | unique:'name' | filter:{created_by: current_user} | filter:{category:mainController.category}">
+</select>
+<br>
+<br>
+
+<div ng-repeat="review in reviews | filter:{created_by: current_user} | filter:{category:mainController.category} | filter:{name:mainController.title} | orderBy:'rating':true">
+    <div class="post" ng-class-odd="'odd'" ng-class-even="'even'">
+        <p>{{review.name}}</p>
+        <p>{{review.created_by}}</p>
+        <p>{{review.rating}}</p>
+        <p>{{review.text}}</p>
+        <small>{{review.created_at}}</small>
+    </div>
+    <br>
+</div>
+
+</body>
+</html>

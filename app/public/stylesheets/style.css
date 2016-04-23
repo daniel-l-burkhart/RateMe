@@ -1,0 +1,60 @@
+body {
+	padding-top:30px;
+	width: 90%;
+	font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+	background: #70aba8;
+	border: 2px dashed #ffffff;
+	font-size: 85%;
+	margin: 0 auto;
+}
+
+a {
+	color: #00B7FF;
+}
+
+.review {
+	padding: 10px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+}
+
+.navbar-fluid {
+	height: 105px;
+}
+
+.odd {
+	background-color: #f2f9ff;
+
+}
+.even {
+	background-color: #eceff3;
+}
+
+.form-auth {
+	max-width: 330px;
+	padding: 5px;
+	margin: 0 auto;
+}
+
+a {
+	color: #00B7FF;
+}
+
+#imageHeader {
+	display: inline-block;
+	padding: 10px;
+}
+
+#content {
+	padding-top: 100px;
+}
+
+footer {
+	color: #ffffff;
+	font-style: italic;
+	text-align: right;
+}
+
+#margin{ margin: 10px;
+	margin-bottom: 20px;
+}

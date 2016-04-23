@@ -1,0 +1,55 @@
+<div class="clearfix">
+  <form ng-Submit="post()" ng-show="authenticated">
+	  <textarea required class="form-control" maxlength="200" rows="3" placeholder="Category?" ng-model="newReview.category"></textarea>
+	  <textarea required class="form-control" maxlength="200" rows="3" placeholder="Title?" ng-model="newReview.name"></textarea>
+	  <input type = "number" min="1" max = "10" required class="form-control" maxlength="200" rows="3" placeholder="Rating Score?" ng-model="newReview.rating"></input>
+	  <textarea required class="form-control" maxlength="500" rows="3" placeholder="Comments?" ng-model="newReview.text"></textarea>
+    <input class="btn submit-btn pull-right" type="submit" value="Rate!" />
+  </form>
+</div>
+<div id="post-stream">
+    <h5>Category &nbsp;&nbsp;&nbsp;Title</h5>
+    <select ng-model="mainController.category"
+            ng-change="mainController.title = undefined"
+            ng-options="review.category as review.category for review in reviews | unique:'category'">
+    </select>
+
+    <select ng-model="mainController.title"
+            ng-options="review.name as review.name for review in reviews | unique:'name' | filter:{created_by:mainController.creator} | filter:{category:mainController.category}">
+    </select>
+
+    <br><br>
+    <label>Title search:</label>
+    <input type="text" ng-model="mainController.title">
+    </input>
+    <label>User search:</label>
+    <input type="text" ng-model="mainController.creator">
+    </input>
+    <button ng-click="mainController.category=undefined; mainController.title=undefined; mainController.creator=undefined">
+        Clear</button>
+    <br>
+    <br>
+    <div ng-show="mainController.category != undefined || mainController.creator != undefined" ng-repeat="review in reviews | filter:{created_by:mainController.creator} | filter:{category:mainController.category} | filter:{name:mainController.title} | orderBy:'rating':true">
+        <div class="post" ng-class-odd="'odd'" ng-class-even="'even'">
+        <p>{{review.name}}</p>
+        <p>{{review.created_by}}</p>
+        <p>{{review.rating}}</p>
+        <p>{{review.text}}</p>
+        <small>{{review.created_at}}</small>
+    </div>
+        <br>
+    </div>
+
+    <br>
+	<h4>Whats Being Rated Now</h4>
+
+    <div class="post" ng-repeat="review in reviews | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'">
+        <p>{{review.name}}</p>
+        <p>{{review.rating}}</p>
+        <small>{{review.created_at}}</small>
+    </div>
+
+
+</div>
+
+
